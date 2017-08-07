@@ -257,6 +257,8 @@ public class Dispatcher {
             Timber.tag(LOGGER_TAG).d("status code %s", statusCode);
 
             return checkResponseCode(statusCode);
+        } catch(ArrayIndexOutOfBoundsException e) { //Dummy catch to prevent weird problems on Android 5.x
+            return false;
         } finally {
             if (urlConnection != null) urlConnection.disconnect();
         }
